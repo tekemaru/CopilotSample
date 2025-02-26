@@ -1,7 +1,6 @@
 package com.example.demo.api;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +15,6 @@ public class EmployeeController {
     @Autowired
     private EmployeeServiceImpl employeeService;
 
-//    @GetMapping("/search")
-//    public List<Employee> searchEmployees(
-//            @RequestParam(required = false) String employeeId,
-//            @RequestParam(required = false) String name,
-//            @RequestParam(required = false) String salary_from,
-//            @RequestParam(required = false) String salary_to,
-//            @RequestParam(required = false) String department) {
-//        return employeeService.searchEmployees(employeeId, name, salary_from, salary_to, department);
-//    }
 
     @GetMapping("/table")
     public String getEmployeesTable(
