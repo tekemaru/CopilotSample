@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>社員マスタ</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <style>
+        .form-control {
+            border-radius: 0.25rem;
+        }
+        .input-group {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1>社員マスタ</h1>
+    <h6>検索条件</h6>
+    <div class="border rounded-lg border-primary mb-4">
+        <form hx-get="/api/employees/table" hx-target="#employee-tbody" hx-swap="innerHTML" method="get">
+            <div class="form-group form-inline input-group-sm mt-3">
+                <label for="employeeId" class="col-md-2 control-label">社員ID</label>
+                <input type="text" class="form-control col-md-2" id="employeeId" name="employeeId" placeholder="社員ID"/>
+                <label for="name" class="col-md-2 control-label">社員名</label>
+                <input type="text" class="form-control col-md-3" id="name" name="name" placeholder="社員名"/>
+            </div>
+            <div class="form-group form-inline input-group-sm mt-3">
+                <label for="salary_from" class="col-md-2 control-label">給与</label>
+                <input type="text" class="form-control col-md-1" id="salary_from" name="salary_from" placeholder="下限"/>
+                <span class="col-md-1 control-label">～</span>
+                <input type="text" class="form-control col-md-1" id="salary_to" name="salary_to" placeholder="上限"/>
+                <label for="department" class="col-md-2 control-label">所属部門</label>
+                <input type="text" class="form-control col-md-2" id="department" name="department" placeholder="所属部門"/>
+            </div>
+            <div class="form-group text-right">
+                <div class="col-md-10">
+                    <button class="btn btn-sm btn-primary" type="submit">検索</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="employee-list">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>社員ID</th>
+                <th>名前</th>
+                <th>給与</th>
+                <th>所属部署</th>
+            </tr>
+            </thead>
+            <tbody id="employee-tbody">
+            <!-- 検索結果がここに表示されます -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
