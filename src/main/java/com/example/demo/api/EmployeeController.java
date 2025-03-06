@@ -58,4 +58,33 @@ public class EmployeeController {
         Long id = Long.parseLong(employeeId);
         employeeService.deleteEmployeeById(id);
     }
+
+    /**
+     * 整列ボタン押下時に呼び出されるエンドポイント
+     * 技術部、マーケティング部、営業部、人事部、経理部の順に並べ替える
+     */
+    @GetMapping("/lineUp")
+    @ResponseBody
+    public String lineUpEmployees() {
+        List<Employee> employees = employeeService.sortEmployeesByDepartment();
+        StringBuilder sb = new StringBuilder();
+
+        for (Employee employee : employees) {
+            sb.append("<tr id='employee-").append(employee.getEmployeeId()).append("'>");
+            sb.append("<td>").append(employee.getEmployeeId()).append("</td>");
+            sb.append("<td>").append(employee.getEmployeeName()).append("</td>");
+            sb.append("<td>").append(employee.getSalary()).append("</td>");
+            sb.append("<td>").append(employee.getDepartment()).append("</td>");
+            sb.append("<td>")
+                    .append("<button class='btn btn-sm btn-danger' ")
+                    .append("hx-delete='/api/employees/").append(employee.getEmployeeId()).append("' ")
+                    .append("hx-swap='outerHTML:beforeend' ")
+                    .append("hx-target='closest tr'>")
+                    .append("削除")
+                    .append("</button>")
+                    .append("</td>");
+            sb.append("</tr>");
+        }
+        return sb.toString();
+    }
 }
