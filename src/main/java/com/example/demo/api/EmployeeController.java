@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.Employee;
 import com.example.demo.service.EmployeeServiceImpl;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/employees")
+@Tag(name = "Employee API", description = "社員情報の管理API")
 public class EmployeeController {
 
     @Autowired
@@ -23,6 +27,7 @@ public class EmployeeController {
 
     @GetMapping("/table")
     @ResponseBody
+    @Operation(summary = "社員情報の検索", description = "引数を検索条件として、社員情報を検索するエンドポイント")
     public String getEmployeesTable(
             @RequestParam(required = false) String employeeId,
             @RequestParam(required = false) String name,
@@ -54,6 +59,7 @@ public class EmployeeController {
 
     @DeleteMapping("/{employeeId}")
     @ResponseBody
+    @Operation(summary = "社員情報の削除", description = "指定された社員IDの社員情報を削除するエンドポイント")
     public void deleteEmployee(@PathVariable String employeeId) {
         Long id = Long.parseLong(employeeId);
         employeeService.deleteEmployeeById(id);
@@ -65,6 +71,7 @@ public class EmployeeController {
      */
     @GetMapping("/lineUp")
     @ResponseBody
+    @Operation(summary = "社員情報の整列", description = "技術部、マーケティング部、営業部、人事部、経理部の順に並べ替えるエンドポイント")
     public String lineUpEmployees() {
         List<Employee> employees = employeeService.sortEmployeesByDepartment();
         StringBuilder sb = new StringBuilder();
