@@ -62,11 +62,11 @@
 
         <div class="card card-custom">
             <h6>登録条件</h6>
-            <form hx-get="/api/employees/register" hx-target="#employee-tbody" hx-swap="innerHTML" method="get">
+            <form id="employeeForm" action="/api/employees/register" method="post">
                 <div class="form-group row">
-                    <label for="employeeId" class="col-md-2 control-label text-right">社員ID</label>
+                    <label for="password" class="col-md-2 control-label text-right">パスワード</label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="employeeId" name="employeeId" placeholder="社員ID" />
+                        <input type="password" class="form-control" id="password" name="password" placeholder="パスワード" />
                     </div>
                     <label for="name" class="col-md-2 control-label text-left">社員名</label>
                     <div class="col-md-3">

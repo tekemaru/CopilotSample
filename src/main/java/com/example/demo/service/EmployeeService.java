@@ -1,8 +1,12 @@
 package com.example.demo.service;
-import com.example.demo.entity.Employee;
+
 import java.util.List;
 
+import com.example.demo.entity.Employee;
+
 public interface EmployeeService {
-    List<Employee> searchEmployees(String employeeId, String name, String salary_from, String salary_to, String department);
-    void deleteEmployeeById(Long id);
+    // 社員情報を検索するメソッド
+    List<Employee> searchEmployees(String employeeId, String name, String salary_from, String salary_to,
+            String department);
+
 }
