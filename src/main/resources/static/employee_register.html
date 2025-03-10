@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>社員マスタ</title>
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        .form-control {
+            border-radius: 0.25rem;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .card-custom {
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card-custom h6 {
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            border: none;
+            border-radius: 0.25rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .control-label {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="header">社員登録画面</h1>
+
+
+        <div class="card card-custom">
+            <h6>登録条件</h6>
+            <form hx-get="/api/employees/register" hx-target="#employee-tbody" hx-swap="innerHTML" method="get">
+                <div class="form-group row">
+                    <label for="employeeId" class="col-md-2 control-label text-right">社員ID</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="employeeId" name="employeeId" placeholder="社員ID" />
+                    </div>
+                    <label for="name" class="col-md-2 control-label text-left">社員名</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="社員名" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="salary" class="col-md-2 control-label text-right">給与</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="salary" name="salary" placeholder="給与" />
+                    </div>
+                    <label for="department" class="col-md-2 control-label text-left">所属部門</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="department" name="department" placeholder="所属部門" />
+                    </div>
+                </div>
+                <div class="form-group text-right">
+                    <button class="btn btn-primary" type="submit">登録</button>
+                </div>
+            </form>
+        </div>
+        <form action="employee.html" method="get">
+            <div class="form-group text-right">
+                <button class="btn btn-secondary" type="submit">マスタ画面へ</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
