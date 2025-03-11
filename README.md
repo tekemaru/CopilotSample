@@ -55,6 +55,19 @@ posgreSQLの環境が整っていない方は以下のコマンドで起動す�
 ```bash
 $ docker run --name postgres -e POSTGRES_PASSWORD=password -d postgres
 ```
+
+任意：A5m2などのSQL開発ツールがあればそちらから挿入するのが楽だが、ない場合は紺んて内にはいって直接SQLをたたく
+
+起動後、以下のコマンドでコンテナの中に入る
+```
+docker exec -it postgres /bin/bash
+```
+
+postgreに接続
+```
+ psql -h localhost -U postgres -d postgre
+```
+
 DBが起動したら以下のDDLを実行する
 ```sql
 -- DROP TABLE public.employee;
